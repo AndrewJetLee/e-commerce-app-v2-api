@@ -5,18 +5,14 @@ const jwt = require("jsonwebtoken");
 
 //REGISTER
 router.post("/register", (req, res) => {
-  if (!req.body) {
-    let errorMessage = "Please enter necessary information";
-    res.status(400).send(errorMessage);
-  }
-
   const newUser = new User({
     username: req.body.username,
     email: req.body.email,
     password: CryptoJS.AES.encrypt(
       req.body.password,
-      process.env.PASS_SEC.toString()
-    ),
+      process.env.PASS_SEC
+    ).toString(),
+    isAdmin: req.body.isAdmin
   });
   newUser
     .save()
@@ -30,6 +26,8 @@ router.post("/register", (req, res) => {
     });
 });
 
+
+//LOGIN
 router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ username: req.body.username });
