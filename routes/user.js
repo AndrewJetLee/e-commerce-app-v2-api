@@ -65,8 +65,32 @@ router.get("/find", verifyTokenAndAdmin, async (req, res) => {
 
 // GET USER STATS
 router.get("/stats", verifyTokenAndAdmin, async (req, res) => {
-    const date = new Date();
-    const lastYear = new Date(date.setFullYear(date.getFullYear() - 1));
-})
+  const date = new Date();
+  const lastYear = new Date(date.setFullYear(date.getFullYear() - 1));
+  try {
+    // aggregation allows computations of the documents within your collections to get back
+    // meaningful data
+    // $match matches all the documents that fulfill the conditions passed in
+    // in this case, it returns all the documents that were created between this date and last year
+    // $gte means greater than or equal to
+    const data = await User.aggregate([
+      { $match: { createdAt: { $gte: lastYear } } },
+      {
+        $project: {
+          month: { $month: "$createdAt" },
+        },
+      },
+      {
+        $group: {
+          _id: "$month",
+          total: { $sum: 1 },
+        },
+      },
+    ]);
+    res.status(200).json(data);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 module.exports = router;
