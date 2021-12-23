@@ -30,8 +30,6 @@ app.use("/api/carts", cartRoute);
 app.use("/api/orders", orderRoute);
 app.use("/api/checkout", stripeRoute);
 
-let test = "test";
-
 app.listen(4000, () => {
   console.log("Successfully connected to server");
 });
