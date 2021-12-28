@@ -12,13 +12,15 @@ router.post("/register", (req, res) => {
       req.body.password,
       process.env.PASS_SEC
     ).toString(),
-    isAdmin: req.body.isAdmin
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
   });
   newUser
     .save()
     .then((data) => {
       console.log("successfully saved user:", data);
-      res.status(201).json(data);
+      const { password, ...others } = data._doc;
+      res.status(201).json(others);
     })
     .catch((err) => {
       console.log(err);
