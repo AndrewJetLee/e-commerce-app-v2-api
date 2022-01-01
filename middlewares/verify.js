@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const verifyToken = (req, res, next) => {
   //get token from header
   const authHeader = req.headers.token;
-  //if the accessToken exists
+  //if the accessToken exists    
   if (authHeader) {
     // Split the header via " " if using Bearer and select the second element in array
     const token = authHeader.split(" ")[1];

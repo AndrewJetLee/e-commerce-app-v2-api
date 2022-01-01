@@ -20,7 +20,7 @@ router.post("/", verifyToken, async (req, res) => {
 
 
 // UPDATE
-router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
+router.put("/:id", verifyTokenAndAuthorization, async (req, res) => { 
   try {
     const updatedCart = await Cart.findOneAndUpdate(
       { id: req.params.id },
@@ -53,6 +53,7 @@ router.get("/find/:userId", verifyTokenAndAuthorization, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
 
 // //GET ALL
 router.get("/", verifyTokenAndAdmin, async (req, res) => {

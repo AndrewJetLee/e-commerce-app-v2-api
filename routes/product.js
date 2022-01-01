@@ -18,7 +18,6 @@ router.post("/", verifyTokenAndAdmin, async (req, res) => {
 });
 
 // UPDATE
-// Pass in the middleware!
 router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
   try {
     const updatedProduct = await Product.findOneAndUpdate(
