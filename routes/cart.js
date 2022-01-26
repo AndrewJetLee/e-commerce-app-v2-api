@@ -4,13 +4,20 @@ const {
   verifyTokenAndAuthorization,
   verifyTokenAndAdmin,
 } = require("../middlewares/verify");
-const CryptoJS = require("crypto-js");
 const Cart = require("../models/Cart");
 
 //CREATE
 router.post("/", verifyToken, async (req, res) => {
   try {
-    const savedCart = await Cart.create(req.body);
+    let userId = req.user.id; 
+    const savedCart = await Cart.create({
+      userId,
+      products: [
+        {
+          ...req.body
+        }
+      ]
+    });
     res.status(200).json(savedCart);
   } catch (err) {
     res.status(500).json(err);
