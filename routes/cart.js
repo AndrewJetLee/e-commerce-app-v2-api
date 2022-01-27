@@ -26,22 +26,16 @@ router.post("/", verifyToken, async (req, res) => {
 
 // UPDATE
 router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
-  const queryCart = await Cart.find({ id: req.params.id });
+  // const queryCart = await Cart.find({ id: req.params.id });
+  debugger; 
   try {  
-    if (!queryCart.length) {
-      const createdCart = await Cart.create({
-        userId: req.params.id,
-        products: [req.body],
-      });
-      res.status(200).json(createdCart);
-    } else {  
       const updatedCart = await Cart.findOneAndUpdate(
         { id: req.params.id },
         { $set: req.body },
         { new: true }
       );
-      res.status(200).json(updatedCart);
-    }
+      debugger; 
+      res.status(200).json({...updatedCart, removedProductTotal: "gigity"});
   } catch (err) {
     res.status(500).json(err);
   }
