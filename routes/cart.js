@@ -27,15 +27,14 @@ router.post("/", verifyToken, async (req, res) => {
 // UPDATE
 router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
   // const queryCart = await Cart.find({ id: req.params.id });
-  debugger; 
   try {  
       const updatedCart = await Cart.findOneAndUpdate(
         { id: req.params.id },
         { $set: req.body },
         { new: true }
       );
-      debugger; 
-      res.status(200).json({...updatedCart, removedProductTotal: "gigity"});
+      const queryCart = await Cart.findOne({ id: req.params.id });
+      res.status(200).json(queryCart);
   } catch (err) {
     res.status(500).json(err);
   }

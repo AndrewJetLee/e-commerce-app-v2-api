@@ -23,6 +23,12 @@ const CartSchema = new mongoose.Schema(
             },
             size: {
               type: String
+            },
+            image: {
+              type: String
+            },
+            title: {
+              type: String
             }
         }
     ],
