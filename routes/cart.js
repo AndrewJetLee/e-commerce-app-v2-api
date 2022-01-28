@@ -48,7 +48,7 @@ router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
       { new: true }
     );
     const queryCart = await Cart.findOne({ id: req.params.id });
-    res.status(200).json({ ...queryCart._doc, removedProductTotal: "gigity" });
+    res.status(200).json({ ...queryCart._doc});
   } catch (err) {
     res.status(500).json(err);
   }
