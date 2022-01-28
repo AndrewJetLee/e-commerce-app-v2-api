@@ -8,17 +8,31 @@ const Cart = require("../models/Cart");
 
 //CREATE
 router.post("/", verifyToken, async (req, res) => {
+  // find cart w/ userId
   try {
-    let userId = req.user.id; 
-    const savedCart = await Cart.create({
-      userId,
-      products: [
+    let userId = req.user.id;
+    const userCart = await Cart.findOne({ userId });
+    if (userCart) {
+      await Cart.updateOne(
+        { userId },
         {
-          ...req.body
-        }
-      ]
-    });
-    res.status(200).json(savedCart);
+          $push: { products: { ...req.body } },
+        },
+        { new: true }
+      );
+      const updatedCart = await Cart.findOne({userId});
+      res.status(200).json(updatedCart);
+    } else {
+      const savedCart = await Cart.create({
+        userId,
+        products: [
+          {
+            ...req.body,
+          },
+        ],
+      });
+      res.status(200).json(savedCart);
+    }
   } catch (err) {
     res.status(500).json(err);
   }
@@ -27,14 +41,14 @@ router.post("/", verifyToken, async (req, res) => {
 // UPDATE
 router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
   // const queryCart = await Cart.find({ id: req.params.id });
-  try {  
-      const updatedCart = await Cart.findOneAndUpdate(
-        { id: req.params.id },
-        { $set: req.body },
-        { new: true }
-      );
-      const queryCart = await Cart.findOne({ id: req.params.id });
-      res.status(200).json({...queryCart._doc, removedProductTotal: "gigity"});
+  try {
+    const updatedCart = await Cart.findOneAndUpdate(
+      { id: req.params.id },
+      { $set: req.body },
+      { new: true }
+    );
+    const queryCart = await Cart.findOne({ id: req.params.id });
+    res.status(200).json({ ...queryCart._doc, removedProductTotal: "gigity" });
   } catch (err) {
     res.status(500).json(err);
   }
