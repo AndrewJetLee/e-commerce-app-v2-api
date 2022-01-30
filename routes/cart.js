@@ -56,9 +56,7 @@ router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
 
 // DELETE
 router.delete("/:id", verifyTokenAndAuthorization, async (req, res) => {
-  debugger;
   try {
-    debugger;
     await Cart.findOneAndDelete({userId: req.params.id});
     res.status(200).json("Successfully deleted product");
   } catch (err) {
