@@ -40,7 +40,6 @@ router.post("/", verifyToken, async (req, res) => {
 
 // UPDATE
 router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
-  // const queryCart = await Cart.find({ id: req.params.id });
   try {
     const updatedCart = await Cart.findOneAndUpdate(
       { id: req.params.id },
