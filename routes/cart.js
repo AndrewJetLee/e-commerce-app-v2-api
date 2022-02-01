@@ -20,7 +20,7 @@ router.post("/", verifyToken, async (req, res) => {
         },
         { new: true }
       );
-      const updatedCart = await Cart.findOne({userId});
+      const updatedCart = await Cart.findOne({ userId });
       res.status(200).json(updatedCart);
     } else {
       const savedCart = await Cart.create({
@@ -40,23 +40,40 @@ router.post("/", verifyToken, async (req, res) => {
 
 // UPDATE
 router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
-  try {
-    const updatedCart = await Cart.findOneAndUpdate(
-      { id: req.params.id },
-      { $set: req.body },
-      { new: true }
-    );
-    const queryCart = await Cart.findOne({ id: req.params.id });
-    res.status(200).json({ ...queryCart._doc});
-  } catch (err) {
-    res.status(500).json(err);
+  if (req.body.productId) {
+    try {
+      const updatedCart = await Cart.findOneAndUpdate({
+        _id: req.params.id,
+        "products.productId": req.body.productId
+      }, {
+        $set: {
+          "products.$.quantity": req.body.quantity,
+        }
+      });
+      const queryCart = await Cart.findOne({ id: req.params.id });
+      res.status(200).json({ ...queryCart._doc });
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  } else {
+    try {
+      const updatedCart = await Cart.findOneAndUpdate(
+        { id: req.params.id },
+        { $set: req.body },
+        { new: true }
+      );
+      const queryCart = await Cart.findOne({ id: req.params.id });
+      res.status(200).json({ ...queryCart._doc });
+    } catch (err) {
+      res.status(500).json(err);
+    }
   }
 });
 
 // DELETE
 router.delete("/:id", verifyTokenAndAuthorization, async (req, res) => {
   try {
-    await Cart.findOneAndDelete({userId: req.params.id});
+    await Cart.findOneAndDelete({ userId: req.params.id });
     res.status(200).json("Successfully deleted product");
   } catch (err) {
     res.status(500).json(err);
