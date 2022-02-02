@@ -11,7 +11,6 @@ router.post("/", verifyToken, async (req, res) => {
   // find cart w/ userId
   try {
     let userId = req.user.id;
-   
     const userCart = await Cart.findOne({ userId });
     if (userCart) {
       await Cart.updateOne(
@@ -44,14 +43,14 @@ router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
   if (req.body.productId) {
     try {
       const updatedCart = await Cart.findOneAndUpdate({
-        _id: req.params.id,
+        userId: req.params.id,
         "products.productId": req.body.productId
       }, {
         $set: {
           "products.$.quantity": req.body.quantity,
         }
       });
-      const queryCart = await Cart.findOne({ id: req.params.id });
+      const queryCart = await Cart.findOne({ userId: req.params.id });
       res.status(200).json({ ...queryCart._doc });
     } catch (err) {
       res.status(500).json(err);
@@ -59,11 +58,11 @@ router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
   } else {
     try {
       const updatedCart = await Cart.findOneAndUpdate(
-        { id: req.params.id },
+        { userId: req.params.id },
         { $set: req.body },
         { new: true }
       );
-      const queryCart = await Cart.findOne({ id: req.params.id });
+      const queryCart = await Cart.findOne({ userId: req.params.id });
       res.status(200).json({ ...queryCart._doc });
     } catch (err) {
       res.status(500).json(err);
