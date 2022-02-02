@@ -11,6 +11,7 @@ router.post("/", verifyToken, async (req, res) => {
   // find cart w/ userId
   try {
     let userId = req.user.id;
+   
     const userCart = await Cart.findOne({ userId });
     if (userCart) {
       await Cart.updateOne(
