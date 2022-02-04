@@ -4,7 +4,6 @@ const {
   verifyTokenAndAuthorization,
   verifyTokenAndAdmin,
 } = require("../middlewares/verify");
-const Cart = require("../models/Cart");
 const { addToCart, updateCart, deleteCart, getCart, getAllCart } = require("../controllers/cartController");
 
 //CREATE
