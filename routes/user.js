@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const {
-  verifyToken,
   verifyTokenAndAuthorization,
   verifyTokenAndAdmin,
 } = require("../middlewares/verify");
@@ -8,7 +7,6 @@ const CryptoJS = require("crypto-js");
 const User = require("../models/User");
 
 // UPDATE
-// Pass in the middleware!
 router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
   if (req.body.password) {
     req.body.password = CryptoJS.AES.encrypt(

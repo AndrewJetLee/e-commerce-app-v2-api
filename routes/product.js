@@ -2,7 +2,6 @@ const router = require("express").Router();
 const {
   verifyTokenAndAdmin,
 } = require("../middlewares/verify");
-const Product = require("../models/Product");
 const { createProduct, updateProduct, deleteProduct, getProduct, getProducts } = require("../controllers/productController");
 
 //CREATE
