@@ -10,14 +10,14 @@
   <p align="center">
     E-commerce web application
     <br />
-    <a href="https://github.com/AndrewJetLee/e-commerce-app-v2-client/"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/AndrewJetLee/e-commerce-app-v2-api/"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="">View Demo</a>
     ·
-    <a href="https://github.com/AndrewJetLee/e-commerce-app-v2-client/issues">Report Bug</a>
+    <a href="https://github.com/AndrewJetLee/e-commerce-app-v2-api/issues">Report Bug</a>
     ·
-    <a href="https://github.com/AndrewJetLee/e-commerce-app-v2-client/issues">Request Feature</a>
+    <a href="https://github.com/AndrewJetLee/e-commerce-app-v2-api/issues">Request Feature</a>
   </p>
 </p>
 
