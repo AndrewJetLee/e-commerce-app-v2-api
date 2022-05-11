@@ -205,7 +205,7 @@ An e-commerce web application for customers to browse for products, edit a user 
 
 
 
-See the [open issues](https://github.com/AndrewJetLee/e-commerce-app-v2-client/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/AndrewJetLee/e-commerce-app-v2-api//issues) for a list of proposed features (and known issues).
 
 
 ## Optimizations
@@ -239,6 +239,6 @@ See the [open issues](https://github.com/AndrewJetLee/e-commerce-app-v2-client/i
 
 Andrew Lee - [linkedin](https://www.linkedin.com/in/andrewjetlee/) - andrewjetlee777@gmail.com
 
-Project Link: [https://github.com/AndrewJetLee/e-commerce-app-v2-client/](https://github.com/AndrewJetLee/e-commerce-app-v2-client/)
+Project Link: [https://github.com/AndrewJetLee/e-commerce-app-v2-client/](https://github.com/AndrewJetLee/e-commerce-app-v2-api/)
 
 
