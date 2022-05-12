@@ -68,7 +68,7 @@ An e-commerce web application that provides its users to browse for products, ed
 * Implement payment processing using Stripe
 
 
-**Link to project:** https://github.com/AndrewJetLee/e-commerce-app-v2-client
+**Link to project:** https://github.com/AndrewJetLee/e-commerce-app-v2-api
 
 
 ### Built With
