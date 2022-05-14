@@ -5,7 +5,7 @@
     <img src="https://github.com/AndrewJetLee/e-commerce-app-v2-client/blob/master/public/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">The Thread Bank (WIP)</h3>
+  <h3 align="center">Bussin Threads (WIP)</h3>
 
   <p align="center">
     E-commerce web application
