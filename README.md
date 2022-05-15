@@ -238,6 +238,6 @@ See the [open issues](https://github.com/AndrewJetLee/e-commerce-app-v2-api//iss
 
 Andrew Lee - [linkedin](https://www.linkedin.com/in/andrewjetlee/) - andrewjetlee777@gmail.com
 
-Project Link: [https://github.com/AndrewJetLee/e-commerce-app-v2-client/](https://github.com/AndrewJetLee/e-commerce-app-v2-api/)
+Project Link: [https://github.com/AndrewJetLee/e-commerce-app-v2-api/](https://github.com/AndrewJetLee/e-commerce-app-v2-api/)
 
 
