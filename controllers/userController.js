@@ -64,7 +64,6 @@ module.exports = {
     newUser
       .save()
       .then((data) => {
-        console.log("successfully saved user:", data);
         const { password, ...others } = data._doc;
         res.status(201).json(others);
       })
